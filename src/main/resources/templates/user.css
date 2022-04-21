@@ -12,9 +12,8 @@ body{
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    background-color: #DD868C;
+    background-color: #F4A7B9; /*Ikkonzome*/
 }
-
 /*外部浅粉色部分 */
 .box1 {
     height: 700px;
@@ -81,6 +80,14 @@ button {
     margin-left: 4%;
     margin-top: 230px;
 }
+
+#btnSubmit{
+	position: absolute;
+	margin-left: auto;
+	width: 80px;
+	height: 32px;
+	font-size: 15px;
+}
 .page {
     position: relative;
     margin-left: 300px;
@@ -116,14 +123,6 @@ table{
     border-radius: 50%;
     overflow: hidden;/*	border: 1px solid grey;*/
 }
-#btnSubmit {
-    position: absolute;
-    margin-left: 8%;
-    width: 80px;
-    height: 32px;
-    font-size: 15px;
-}
-
 .userInfo{
     position: absolute;
 
