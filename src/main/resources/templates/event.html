@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/xin.css">
+    <script src="../static/js/dl.js"></script>
+    <style type="text/css">
+        /*外部深粉色部分 */
+
+        .box {
+            height: 800px;
+            width: 1200px;
+            float: left;
+            margin: 20px;
+            margin-left: 250px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            background-color: #DD868C;
+        }
+        /*外部浅粉色部分 */
+
+        .box1 {
+            height: 700px;
+            width: 1160px;
+            margin-left: 20px;
+            margin-top: 50px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            background-color: #eac9cd;
+        }
+
+        input {
+            margin-left: 40px;
+            height: 30px;
+            width: 550px;
+            text-align: center;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+        /* logo */
+
+        .png {
+            position: absolute;
+            top: 80px;
+            margin-left: 1%;
+            margin-bottom: 50px;
+        }
+
+        .msg {
+            position: absolute;
+            margin-left: 54%;
+            margin-top: -240px;
+        }
+        /* 四个按钮 */
+
+        button {
+            font-size: 20px;
+            position: absolute;
+            top: 320px;
+            margin-left: 4%;
+            color: #d37379;
+            text-shadow: 5px 5px 5px rgb(255, 255, 255), 0px 0px 2px rgb(255, 255, 255);
+            font-family: align;
+            font-weight: 700;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            width: 160px;
+            height: 65px;
+            text-align: center;
+            background: linear-gradient(#dfe9f7, #f5cdd3);
+        }
+
+
+        .button2 {
+            position: absolute;
+            margin-left: 4%;
+            margin-top: 60px;
+        }
+
+        .button1 {
+            position: absolute;
+            margin-left: 4%;
+            margin-top: 230px;
+        }
+        /* 搜索框 */
+
+        .sousuo {
+            height: 80px;
+            width: 780px;
+            margin-left: 350px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            background-color: #f8c5ae;
+        }
+        /* 深粉色小框 */
+
+        .da {
+            font-size: 24px;
+            text-shadow: 5px 5px 5px rgb(255, 255, 255), 0px 0px 2px rgb(255, 255, 255);
+            font-weight: 900;
+            color: #ffffff;
+            height: 480px;
+            width: 780px;
+            margin-left: 350px;
+            background: #DD868C;
+            margin-top: 40px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+        /* 小框里的小框 */
+
+        #box2 {
+            height: 360px;
+            width: 700px;
+            margin-left: 390px;
+            background: linear-gradient(to bottom, #d5d1e4 30%, #e7d6e2 70%);
+            margin-top: -400px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            font-size: 25px;
+            text-shadow: 5px 5px 5px rgb(255, 255, 255), 0px 0px 2px rgb(255, 255, 255);
+            font-weight: 900;
+            color: #faecd3;
+            overflow: hidden;
+        }
+
+        #box2>div {
+            /* 子容器比父容器的宽度多 17 px, 经测正好是滚动条的默认宽度 */
+            height: 347px;
+            width: 700px;
+            line-height: 30px;
+            text-align: center;
+            overflow-y: scroll;
+            color: #d37379;
+        }
+
+        body {
+            background-color: #EDEEF3
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="box">
+
+    <div id="tittle">
+        <h2 align="center"></h2>
+        <div class="box1">
+            <div class="png">
+                <img src="logo.png" width="250" height="170" top="120" />
+                <table style="height:700px;border-color:#bdbdbd;
+                    border-left-style:solid;
+                    margin-top: -178px;
+                    margin-left: 250px;
+                    border-width:1px">
+                    <tr>
+                        <td valign="top"></td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="button">
+                <br> <button onclick="foHome()">Home</button> <br>
+            </div>
+            <div class="button1">
+                <br> <button onclick="foUser()">User</button> <br>
+            </div>
+            <div class="button2">
+                <br> <button onclick="foLogin()">Search</button> <br>
+            </div>
+
+            <div class="sousuo">
+                <div id="title">
+                    <p class="input">
+                        <br> <input id="keyword" type="text" placeholder="search">
+                        <button onclick="search()" style="width:120px;height:40px; top: 150px;right:300px">search</button>
+                    <br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="da">
+                <p class="input_da">
+            </div>
+
+            <div id="box2">
+                <div id="event-box">
+                    The search results
+                </div>
+            </div>
+
+            <div class="msg">
+                <br> <button onclick="foReturn()" style="width:80px;height:30px;top: 290px;right:-250px">return</button> <br>
+
+                </a>
+                </i>
+                </h4>
+
+            </div>
+        </div> </div> </div>
+<Script Language="JavaScript">
+    function foReturn() {
+        location.href = "home.html"
+    }
+
+    function foHome() {
+        location.href = "home.html"
+    }
+
+    function foUser() {
+        location.href = "user.html"
+    }
+</Script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    function search() {
+        let keyword = $('#keyword').val();
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost:8080/reminder/event/search?keyword=' + keyword,
+            success: function(data) {
+                console.log(data)
+                if (data.code == 0) {
+                    let eventList = data.eventList;
+                    $('#event-box').children().remove()
+                    for (let i = 0; i < eventList.length; i++) {
+
+                        let waitToAppend = "<span>";
+                        waitToAppend += eventList[i].event;
+                        waitToAppend += " ———— ";
+                        waitToAppend += eventList[i].eventTime;
+                        waitToAppend += "</span><br>";
+                        $('#event-box').append(waitToAppend);
+                    }
+                }
+            },
+            error: function(data) {
+                console.log("收到服务器error返回的数据")
+                console.log(data)
+            }
+        })
+    }
+</script>
+</body>
+
+</html>

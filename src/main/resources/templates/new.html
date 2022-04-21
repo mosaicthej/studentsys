@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+
+    <style type="text/css">
+
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>日历事件</title>
+
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" th:href="@{/static/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/assets/font-awesome/4.5.0/css/font-awesome.min.css}"/>
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" th:href="@{/static/assets/css/jquery-ui.custom.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/assets/css/jquery-ui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/assets/css/fullcalendar.min.css}"/>
+
+    <!-- text fonts -->
+    <link rel="stylesheet" th:href="@{/static/assets/css/fonts.googleapis.com.css}"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" th:href="@{/static/assets/css/ace.min.css}" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" th:href="@{/static/assets/css/ace-part2.min.css}" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/static/assets/css/ace-skins.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/assets/css/ace-rtl.min.css}"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" th:href="@{/static/assets/css/ace-ie.min.css}"/>
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script th:src="@{/static/assets/js/ace-extra.min.js}"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script th:src="@{/static/assets/js/html5shiv.min.js}"></script>
+    <script th:src="@{/static/assets/js/respond.min.js}"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-2">
+<div id="navbar" class="navbar navbar-default          ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">日历事件</span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header pull-left">
+            <a href="/" class="navbar-brand">
+                <small>
+                    日历事件管理
+                </small>
+            </a>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
+
+
+<div class="main-container ace-save-state" id="main-container">
+    <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+        <script type="text/javascript">
+            try {
+                ace.settings.loadState('sidebar')
+            } catch (e) {
+            }
+        </script>
+
+        <ul class="nav nav-list">
+            <li class="">
+                <a href="index.html">
+                    <span class="menu-text"> HOME </span>
+                </a>
+            </li>
+            <li class="">
+                <a href="index.html">
+                    <span class="menu-text"> CALENDER </span>
+                </a>
+            </li>
+            <li class="">
+                <a href="index.html">
+                    <span class="menu-text"> EVENT </span>
+                </a>
+            </li>
+            <li class="">
+                <a href="index.html">
+                    <span class="menu-text"> USER </span>
+                </a>
+            </li>
+        </ul><!-- /.nav-list -->
+
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <button class="btn btn-primary" id="buttonAdd">新增事件</button>
+            </div>
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div id="dialog-confirm" class="hide">
+                                    <label>事件名称:<input id="title" type="text"></label>
+                                    <label>开始时间:<input id="datetimepicker1" type="text"></label>
+                                    <label>结束时间:<input id="datetimepicker2" type="text"></label>
+                                </div><!-- #dialog-confirm -->
+                            </div><!-- ./span -->
+                        </div><!-- ./row -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="space"></div>
+                                <div id="calendar"></div>
+
+                            </div>
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+<!--[if !IE]> -->
+<script th:src="@{/static/assets/js/jquery-2.1.4.min.js}"></script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script th:src='@{/static/assets/js/jquery.mobile.custom.min.js}'>" + "<" + "/script>");
+</script>
+<script th:src="@{/static/assets/js/bootstrap.min.js}"></script>
+
+<!-- page specific plugin scripts -->
+<script th:src="@{/static/assets/js/jquery-ui.min.js}"></script>
+<script th:src="@{/static/assets/js/jquery-ui.custom.min.js}"></script>
+<script th:src="@{/static/assets/js/jquery.ui.touch-punch.min.js}"></script>
+<script th:src="@{/static/assets/js/moment.min.js}"></script>
+<script th:src="@{/static/assets/js/fullcalendar.min.js}"></script>
+<script th:src="@{/static/assets/js/bootbox.js}"></script>
+<script th:src="@{/static/assets/js/bootstrap-datetimepicker.min.js}"></script>
+
+<!-- ace scripts -->
+<script th:src="@{/static/assets/js/ace-elements.min.js}"></script>
+<script th:src="@{/static/assets/js/ace.min.js}"></script>
+<script th:inline="javascript">
+    jQuery(function ($) {
+        $('#external-events div.external-event').each(function () {
+            var eventObject = {
+                title: $.trim($(this).text())
+            };
+
+            $(this).data('eventObject', eventObject);
+
+            $(this).draggable({
+                zIndex: 999,
+                revert: true,
+                revertDuration: 0
+            });
+
+        });
+        $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm',
+            startDate: date
+        });
+        $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm',
+            startDate: date
+        });
+
+
+        $("#buttonAdd").on('click', function (e) {
+            e.preventDefault();
+            $("#dialog-confirm").removeClass('hide').dialog({
+                resizable: false,
+                width: '320',
+                height: '400',
+                modal: true,
+                title: "添加事件",
+                title_html: true,
+                buttons: [
+                    {
+                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; 保存事件",
+                        "class": "btn btn-success btn-minier",
+                        click: function () {
+                            $(this).dialog("close");
+                            var title = $('#title').val();
+                            var begin = $('#datetimepicker1').val();
+                            var end = $('#datetimepicker2').val();
+                            saveEvent(title, begin, end)
+                        }
+                    },
+                    {
+                        html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; 取消",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+        });
+
+
+        /* initialize the calendar
+        -----------------------------------------------------------------*/
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+
+        var eventRecord = [];
+        var calendar = $('#calendar').fullCalendar({
+            //isRTL: true,
+            //firstDay: 1,// >> change first day of week
+
+            buttonHtml: {
+                prev: '<i class="ace-icon fa fa-chevron-left"></i>',
+                next: '<i class="ace-icon fa fa-chevron-right"></i>'
+            },
+
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            events: eventRecord
+            //     [
+            //     {
+            //         title: 'All Day Event',
+            //         start: new Date(y, m, 1),
+            //         className: 'label-important'
+            //     },
+            //     {
+            //         title: 'Long Event',
+            //         start: moment().subtract(5, 'days').format('YYYY-MM-DD'),
+            //         end: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+            //         className: 'label-success'
+            //     },
+            //     {
+            //         title: 'Some Event',
+            //         start: new Date(y, m, d - 3, 16, 0),
+            //         allDay: false,
+            //         className: 'label-info'
+            //     }
+            // ]
+            ,
+
+            /**eventResize: function(event, delta, revertFunc) {
+
+			alert(event.title + " end is now " + event.end.format());
+
+			if (!confirm("is this okay?")) {
+				revertFunc();
+			}
+
+		},*/
+
+            editable: true,
+            droppable: true, // this allows things to be dropped onto the calendar !!!
+            drop: function (date) { // this function is called when something is dropped
+
+                // retrieve the dropped element's stored Event Object
+                var originalEventObject = $(this).data('eventObject');
+                var $extraEventClass = $(this).attr('data-class');
+
+
+                // we need to copy it, so that multiple events don't have a reference to the same object
+                var copiedEventObject = $.extend({}, originalEventObject);
+
+                // assign it the date that was reported
+                copiedEventObject.start = date;
+                copiedEventObject.allDay = false;
+                if ($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+
+                // render the event on the calendar
+                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+
+            }
+            ,
+            selectable: true,
+            selectHelper: true,
+            /**
+             *  处理点击事件
+             * @param calEvent
+             * @param jsEvent
+             * @param view
+             */
+            eventClick: function (calEvent, jsEvent, view) {
+                //display a modal
+                var modal =
+                    '<div class="modal fade">\
+                      <div class="modal-dialog">\
+                       <div class="modal-content">\
+                         <div class="modal-body">\
+                           <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
+                           <form class="no-margin">\
+                              <label>修改名称 &nbsp;</label>\
+                              <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
+					 <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
+				   </form>\
+				 </div>\
+				 <div class="modal-footer">\
+					<button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> 删除事件</button>\
+					<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> 取消</button>\
+				 </div>\
+			  </div>\
+			 </div>\
+			</div>';
+                var modal = $(modal).appendTo('body');
+                modal.find('form').on('submit', function (ev) {
+                    ev.preventDefault();
+                    calEvent.title = $(this).find("input[type=text]").val();
+                    calendar.fullCalendar('updateEvent', calEvent);
+                    modal.modal("hide");
+                });
+                modal.find('button[data-action=delete]').on('click', function () {
+                    calendar.fullCalendar('removeEvents', function (ev) {
+                        return (ev._id == calEvent._id);
+                    })
+                    modal.modal("hide");
+                });
+
+                modal.modal('show').on('hidden', function () {
+                    modal.remove();
+                });
+            }
+        });
+
+        function saveEvent(name, start, end) {
+            $.post('/saveEventRecord', {
+                eventName: name,
+                startTime: start,
+                endTime: end
+            }, function (data) {
+                if (data == 1) {
+                    alert('保存成功');
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            title: name,
+                            start: start,
+                            end: end,
+                            className: 'label-info'
+                        },
+                        true // make the event "stick"
+                    );
+                }
+            }, 'json');
+        }
+
+
+        selectAllEvent();
+
+        function selectAllEvent() {
+            $.ajax({
+                url: '/selectEventRecord',
+                type: 'get',
+            }).done(function (dat) {
+                for (var key in dat) {
+                    console.log(key);
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            title: dat[key].eventName,
+                            start: dat[key].startTime,
+                            end: dat[key].endTime,
+                            className: 'label-info'
+                        },
+                        true // make the event "stick"
+                    );
+                }
+            })
+        }
+
+
+    })
+</script>
+
+<!-- inline scripts related to this page -->
+</body>
+</html>

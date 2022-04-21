@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--xmlns="http://mybatis.org/schema/mybatis-mapper"-->
+<mapper namespace="com.study.studentsys.mapper.UserMapper">
+    <select id="findAll" resultType="User">
+        select * from User
+    </select>
+    <select id="findByEmailAddress" resultType="User">
+        select * from User where email_address=#{EmailAddress}
+    </select>
+    <select id="findPswByEmailAddress" resultType="String">
+        select password from user where email_address = #{EmailAddress}
+    </select>
+    <insert id="save">
+        insert into user(email_address,password,username,confirmPassword) value (#{emailAddress},#{password},#{username},#{confirmPassword})
+    </insert>
+
+    <update id="updateUserInfoByEmail">
+        update user  set username=#{username}, birthday= #{birthday}, gender = #{gender} where email_address=#{emailAddress}
+    </update>
+
+    <update id="resetPwd">
+        update user set password=#{password} where email_address=#{email}
+    </update>
+</mapper>

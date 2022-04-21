@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calendar-Home</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <script src="https://unpkg.com/element-ui"></script>
+    <script src="https://unpkg.com/element-ui/lib/umd/locale/en.js"></script>
+    <style>
+        .el-header {
+            background-color: #EDEEF3;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-main {
+            background-color: #EDEEF3;
+            color: #333;
+            text-align: center;
+            /* line-height: 160px; */
+        }
+
+        body>.el-container {
+            margin-bottom: 40px;
+        }
+
+        .calendar-container-out {
+            margin: auto;
+            background: #DD868C;
+            height: 800px;
+            width: 1200px;
+            border: 1px solid #DD868C;
+            border-radius: 25px;
+            padding-bottom: 40px;
+        }
+
+        .calendar-container-in {
+            margin: auto;
+            /* height: 80%; */
+            /* width: 90%; */
+            height: 700px;
+            width: 1160px;
+            border: 1px solid #eac9cd;
+            border-radius: 25px;
+            background: #eac9cd;
+        }
+
+        .myButton {
+            width: 180px;
+            height: 70px;
+            text-align: center;
+            background: linear-gradient(#dfe9f7, #f8dee2);
+            margin-top: 35px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: large;
+            color: #DD868C;
+        }
+
+        .myButton:focus,
+        .myButton:hover {
+            color: #DD868C !important;
+            background: linear-gradient(#dfe9f7, #f8dee2) !important;
+            border-color: #f8dee2 !important;
+        }
+
+        .el-calendar {
+            border-radius: 0px 50px 0px 0px;
+            margin-right: 5px;
+        }
+
+        .el-calendar__header {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: #eac9cd;
+            border-radius: 0px 20px 0px 0px;
+        }
+
+        .el-calendar__title {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: x-large;
+        }
+
+        .el-calendar__button-group>.el-button-group>.el-button {
+            background-color: #DD868C;
+            color: #fff;
+            height: 40px;
+        }
+
+        .el-calendar-day {
+            height: auto !important;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .el-calendar-table td.is-today {
+            color: #DD868C;
+        }
+
+        .el-card__body {
+            border-radius: 50px 50px 50px 50px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <el-container>
+        <el-main>
+            <div class="calendar-container-out">
+
+
+                <div style="padding-left: 20px;padding-top: 20px;padding-bottom: 20px;color: #fff;">
+                    <el-page-header @back="goBackLogin" title="back" content="">
+                    </el-page-header>
+                </div>
+                <el-row>
+                    <el-col :span="24">
+                        <div class="calendar-container-in">
+
+
+
+                            <el-row :gutter="20">
+                                <el-col :span="6" style=" text-align: center;">
+                                    <!-- 图片 -->
+                                    <el-row>
+                                        <el-col :span="24">
+                                            <el-image style="width: 250px; height: 170px; margin: auto;display: inline-block;" :src="logourl" fit="contain"></el-image>
+                                        </el-col>
+                                    </el-row>
+                                    <!-- 四个按钮 -->
+                                    <el-row>
+                                        <el-col :span="24">
+                                            <el-button plain icon="el-icon-house" class="myButton" @click="to">Home</el-button>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row>
+                                        <el-col :span="24">
+                                            <el-button plain icon="el-icon-date" class="myButton" @click="toCalendar">Calendar</el-button>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row>
+                                        <el-col :span="24">
+                                            <el-button plain icon="el-icon-message" class="myButton" @click="toEvent">Event</el-button>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row>
+                                        <el-col :span="24">
+                                            <el-button plain icon="el-icon-user" class="myButton" @click="toUser">User</el-button>
+                                        </el-col>
+                                    </el-row>
+                                </el-col>
+                                <el-col :span="18" style="border-left: 1px solid #BBB;height: 700px;">
+                                    <!-- 日历 -->
+                                    <el-row>
+                                        <el-calendar :first-day-of-week="7" v-model="nowDate">
+                                        </el-calendar>
+                                    </el-row>
+                                    <!-- 日历下方 -->
+                                    <el-row :gutter="20" style="margin-top: 15px;margin-bottom: 15px;">
+                                        <el-col :span="11">
+
+
+                                            <div>
+
+                                            </div>
+                        </div>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="13">
+                        <el-row style="margin-right: 5px;">
+
+
+                            <el-row>
+
+                                <el-col :span="12">
+
+                                </el-col>
+                            </el-row>
+            </div>
+
+
+</div>
+</el-row>
+</el-col>
+</el-row>
+</el-col>
+</el-row>
+</div>
+</el-col>
+</el-row>
+</div>
+</el-main>
+</el-container>
+</div>
+</body>
+<script>
+    ELEMENT.locale(ELEMENT.lang.en)
+    var app = new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                logourl: 'file:///Users/applw/Desktop/WechatIMG612.png',
+                nowDate: new Date(),
+                rateValue: null
+            }
+        },
+        methods: {
+            goBackLogin: function() {
+                console.log('go back')
+                location.href = "./login.html"
+            },
+            toHome: function() {
+                location.href = './calendar-home.html'
+            },
+            toCalendar: function() {
+                location.href = "./calendar.html"
+            },
+            toEventDetails: function() {
+                location.href = "./event.html"
+            },
+            toEvent: function() {
+                location.href = "./event.html"
+            },
+            toUser: function() {
+                location.href = "./user.html"
+            }
+
+        }
+    })
+</script>
+
+</html>

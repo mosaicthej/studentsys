@@ -1,0 +1,132 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>登录</title>
+            <link rel="stylesheet" type="text/css" href="../static/css/xin.css">
+            <script src="../static/js/dl.js"></script>
+            <style type="text/css">
+                h2 {
+                    font-size: 40px;
+                    color: #dd868c;
+                    text-shadow: 2px 2px 2px #ffffff, 0px 0px 2px rgb(255, 255, 255);
+                }  png{
+                                       margin-left: 22px;
+                   }
+                .box {
+                    border: 1px solid #e4c4c4;
+                    height: 460px;
+                    width: 800px;
+                    float: left;
+                    margin-left: 27.5%;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                    border-bottom-left-radius: 25px;
+                    border-bottom-right-radius: 25px;
+                    background-color:  #EABEC3;
+                }
+
+                .input_box{
+                    margin-left: 23%;
+                    height: 30px;
+                    width: 600px;
+                    text-shadow: 1px 1px 1px #ffffff, 0px 0px 2px rgb(255, 255, 255);
+                    font-weight: 700;
+                    color: #DD868C;
+                }
+                input {
+                    align-self: center;
+                    height: 31px;
+                    width: 430px;
+                    text-align:center;
+                    color:#DD868C;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                    border-bottom-left-radius: 25px;
+                    border-bottom-right-radius: 25px;
+                }
+                button{
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                    border-bottom-left-radius: 25px;
+                    border-bottom-right-radius: 25px;
+                    font-size: 17px;
+                    font-family: align;
+                    color:#ffffff;
+                    width: 160px;
+                    height: 50px;
+                    align-self: center;
+                    margin-bottom: auto;
+                    background:  #DD868C;
+                    margin-left: 40%;
+                    margin-top: 3.5%;
+                    text-align:center;
+                }
+
+                body{
+                    background-color:#EDEEF3
+                }
+
+                .msg{
+                    text-decoration-line: none;
+                    color: #ffffff;
+                    text-shadow: 1px 1px 1px #9791A0, 0px 0px 2px rgb(255, 255, 255);
+                }
+            </style>
+        </head>
+
+
+<body>
+
+<form method="post" action="/user/login">
+    <div style="text-align:center">
+        <div class="png">
+        <img src="logo.png" width="400" height="230" right="10px" />
+      </div>      </div>
+
+
+    <div class="box">
+        <div id="tittle">
+            <h2 align="center">
+                Login
+            </h2>
+        </div>
+        <div class="input_box">
+            Email Address:
+            <br>
+            <input name="emailAddress" id="email_address" type="email" placeholder="Please enter your Email Address here">
+            <br>
+            Name:
+            <br>
+            <input name="username" type="text" placeholder="Please enter your Username here">
+            <br>
+            Password:
+            <br>
+            <input name="password" type="password" placeholder="Please enter your Password here">
+            <br>
+
+        </div >
+        <div class="button">
+            <br>  <input type="submit" value="LOGIN" style="width:150px;height:50px;  margin-left: 41%; background:  #DD868C;
+            color:#ffffff;margin-top:17%;">
+            <br>
+            <input type="button" onclick="javascript:window.location.href='regist.html'" value=" Don't have an account?"  style="width:150px;height:50px;  margin-left: 41%; background:  #DD868C;
+            color:#ffffff;margin-top:2%;">
+        </div>
+
+        <div class="msg">
+            <h4 align="center">
+                Forget your password?
+                <a href="reset.html " style="color: #9791A0"><i>
+                    Reset
+                </i>
+                </a >
+            </h4>
+        </div>
+    </div >
+
+</form>
+</body>
+
+</html>

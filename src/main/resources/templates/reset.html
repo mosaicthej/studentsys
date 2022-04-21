@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="resetpwd.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            font-family: "微软雅黑", "宋体", Tahoma, Arial, Helvetica, sans-serif;
+        }
+
+        .header{
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header img{
+            width: 200px;
+        }
+
+        .content{
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+            background: #e9c9cc;
+            border-radius: 25px;
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .content h1{
+            height: 70px;
+            line-height: 70px;
+            font-size: 40px;
+            color: #dca391;
+        }
+
+        .content dl{
+            width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .content dl dt{
+            position: relative;
+            float: left;
+            width: 260px;
+            height: 60px;
+            line-height: 60px;
+            text-align: left;
+            font-size: 20px;
+            color: #dd868c;
+            padding-left: 40px;
+        }
+
+        .content dl dd input{
+            width: 270px;
+            height: 60px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            padding: 0 10px;
+        }
+
+        input[type='submit']{
+            position: relative;
+            left: -120px;
+            color: #dd868c;
+            font-size: 18px;
+            font-weight: bold;
+
+        }
+
+        .content button{
+            position: absolute;
+            right: -50px;
+            top: 10px;
+            width: 80px;
+            height: 40px;
+            color: #dd868c;
+            background: linear-gradient(#dfe9f7, #f8dee2);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="logo.jpg">
+</div>
+<div class="content">
+    <h1>RESET PASSWORD</h1>
+    <dl>
+        <dt>Email Address</dt>
+        <dd><input id="emailinput" type="text" placeholder="单行输入"></dd>
+    </dl>
+    <dl>
+        <dt>Verification Code</dt>
+        <dd><input id="verificationcodeinput" type="text" placeholder="单行输入"><button onclick="sendCode()">SEND</button></dd>
+    </dl>
+    <dl>
+        <dt>Password</dt>
+        <dd><input id="passwordinput" type="text" placeholder="单行输入"></dd>
+    </dl>
+    <dl>
+        <dt>Confirm Password</dt>
+        <dd><input id="confirmpasswordinput" type="text" placeholder="单行输入"></dd>
+    </dl>
+    <dl>
+        <dt></dt>
+        <dd><input type="button" value="RESET" onclick="resetPwd()" style="background: linear-gradient(#dfe9f7, #f8dee2);border-radius: 37px"></dd>
+    </dl>
+</div>
+
+</body>
+<script>
+    function sendCode() {
+        let email = $('#emailinput').val()
+
+        $.ajax({
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/email/sendresetpwdcode?email='+email,
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (data) {
+                console.log('发送邮箱验证码失败')
+                console.log(data)
+            }
+        })
+    }
+    function resetPwd() {
+        let emailAddress = $('#emailinput').val()
+        let verificationCode = $('#verificationcodeinput').val()
+        let password = $('#passwordinput').val()
+        let confirmPassword = $('#confirmpasswordinput').val()
+
+        var data = {
+            emailAddress: emailAddress,
+            verificationCode: verificationCode,
+            password: password,
+            confirmPassword: confirmPassword
+        }
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/user/resetpwd',
+            data: JSON.stringify(data),
+            success: function (data) {
+                console.log(data)
+                if (data.code == '1') {
+                    alert('修改成功！')
+                    location.href = '/'
+                } else {
+                    alert(data.msg)
+                }
+            },
+            error: function (data) {
+                console.log("收到服务器error返回的数据")
+                console.log(data)
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,180 @@
+/*外部深粉色部分 */
+body{
+    background-color:#fbf7f9; /*Taikoh*/
+}
+.box {
+    height: 800px;
+    width: 1200px;
+    float: left;
+    margin: 20px;
+    margin-left: 250px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #DD868C;
+}
+
+/*外部浅粉色部分 */
+.box1 {
+    height: 700px;
+    width: 1160px;
+    margin-left: 20px;
+    margin-top: 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #FEDFE1; /*Sakura*/
+}
+
+input {
+    /*	margin-left: 40px;*/
+    height: 30px;
+    /*	width: 550px;*/
+    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+/* logo */
+.png {
+    position: absolute;
+    top: 80px;
+    margin-left: 1%;
+    margin-bottom: 50px;
+}
+/* 四个按钮 */
+button {
+    font-size: 20px;
+    font-family: 'schoolbell';
+    position: absolute;
+    top: 280px;
+    margin-left: 4%;
+    color: #d37379;
+    text-shadow: 5px 5px 5px rgb(255, 255, 255), 0px 0px 2px rgb(255, 255, 255);
+    font-family: align;
+    font-weight: 700;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 160px;
+    height: 65px;
+    text-align: center;
+    background: linear-gradient(#dfe9f7, #f5cdd3);
+}
+#button3 {
+    position: absolute;
+    margin-left: 4%;
+    margin-bottom: 50px;
+}
+#button2 {
+    position: absolute;
+    margin-left: 4%;
+    margin-top: 115px;
+}
+#button1 {
+    position: absolute;
+    margin-left: 4%;
+    margin-top: 230px;
+}
+.page {
+    position: relative;
+    margin-left: 300px;
+}
+#title {
+    font-family: "the-girl-next-door";
+    text-align: center;
+    font-style: oblique;
+    color: #DC9FB4;
+    position: relative;
+    vertical-align: top;
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.content {
+    /* top:  */
+    position: absolute;
+    text-align: left;
+    /*	background-color:;*/
+}
+table{
+    table-layout: auto;
+    width: 100%;
+}
+.profile-pic-div {
+    height: 200px;
+    width: 200px;
+    position: relative;
+    /*	margin-left: 0px;*/
+    /*	transform: translate(-50%, -50%);*/
+    border-radius: 50%;
+    overflow: hidden;/*	border: 1px solid grey;*/
+}
+#btnSubmit {
+    position: absolute;
+    margin-left: 8%;
+    width: 80px;
+    height: 32px;
+    font-size: 15px;
+}
+
+.userInfo{
+    position: absolute;
+
+}
+
+/*
+	thead.textSeg{
+		float: left;
+	}
+	thead th.textSeg{
+		display: block;
+	}
+	tbody th.textSeg{
+		float: right;
+	}
+*/
+/*
+table .textSeg{
+}
+*/
+tr .infoRow{
+    height: 70px;
+}
+
+#photo {
+    height: 100%;
+    width: 100%;
+}
+#file {
+    display: none;
+}
+#uploadBtn {
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: wheat;
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+}
+
+#luckyZodiac{
+    overflow-y: auto;
+    height: 300px;
+    width: 350px;
+}
+

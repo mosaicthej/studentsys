@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regist success</title>
+</head>
+<body>
+<h2>注册成功</h2>
+<div>3秒后自动跳转到登录页面</div>
+</body>
+<script type="text/javascript">
+    onload = function () {
+        setTimeout(toLogin, 3000);
+    }
+    function toLogin() {
+        location.href = "http://localhost:8081/page/login.html"
+    }
+</script>
+</html>
