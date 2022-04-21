@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>User</title>
-    <style type="text/css">
+    <link rel="stylesheet" type="text/css" href="user.css">
+
+    <style>  /*user.css*/
         /*外部深粉色部分 */
         body{
-            background-color:#fbf7f9; /*Taikoh*/
+            background-color:#f8c3cd; /*Taikoh*/
         }
         .box {
             height: 800px;
@@ -18,7 +20,7 @@
             border-top-right-radius: 30px;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-            background-color: #DD868C;
+            background-color: #F4A7B9; /*Ikkonzome*/
         }
         /*外部浅粉色部分 */
         .box1 {
@@ -30,7 +32,7 @@
             border-top-right-radius: 30px;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-            background-color: #eac9cd;
+            background-color: #FEDFE1; /*Sakura*/
         }
 
         input {
@@ -52,11 +54,11 @@
             margin-bottom: 50px;
         }
         /* 四个按钮 */
-
         button {
             font-size: 20px;
+            font-family: 'schoolbell';
             position: absolute;
-            top: 320px;
+            top: 280px;
             margin-left: 4%;
             color: #d37379;
             text-shadow: 5px 5px 5px rgb(255, 255, 255), 0px 0px 2px rgb(255, 255, 255);
@@ -71,28 +73,38 @@
             text-align: center;
             background: linear-gradient(#dfe9f7, #f5cdd3);
         }
-
-
-        .button2 {
+        #button3 {
             position: absolute;
             margin-left: 4%;
-            margin-top: 60px;
+            margin-bottom: 50px;
         }
-
-        .button1 {
+        #button2 {
+            position: absolute;
+            margin-left: 4%;
+            margin-top: 115px;
+        }
+        #button1 {
             position: absolute;
             margin-left: 4%;
             margin-top: 230px;
+        }
+
+        #btnSubmit{
+            position: absolute;
+            margin-left: auto;
+            width: 80px;
+            height: 32px;
+            font-size: 15px;
         }
         .page {
             position: relative;
             margin-left: 300px;
         }
         #title {
-            text-shadow: 3px 3px 3px rgb(255, 255, 255), 0px 0px 2px rgb(255, 255, 255);
-            color: #DD868C;
+            font-family: "the-girl-next-door";
             text-align: center;
             font-style: oblique;
+            color: #DC9FB4;
             position: relative;
             vertical-align: top;
             font-weight: 700;
@@ -119,45 +131,20 @@
             border-radius: 50%;
             overflow: hidden;/*	border: 1px solid grey;*/
         }
-        #btnSubmit {
-            position: absolute;
-            margin-left: 8%;
-            width: 80px;
-            height: 32px;
-            font-size: 15px;
-        }
-
         .userInfo{
             position: absolute;
 
         }
 
-        /*
-            thead.textSeg{
-                float: left;
-            }
-            thead th.textSeg{
-                display: block;
-            }
-            tbody th.textSeg{
-                float: right;
-            }
-        */
-        /*
-        table .textSeg{
-        }
-        */
         tr .infoRow{
             height: 70px;
-            color:  #DD868C;
-            font-size: 20px;
         }
 
         #photo {
             height: 100%;
             width: 100%;
         }
-        #file {
+        #imgFile {
             display: none;
         }
         #uploadBtn {
@@ -181,10 +168,279 @@
             overflow-y: auto;
             height: 300px;
             width: 350px;
+}
+    </style>
+
+    <script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+    <script>
+        const adobewebfontsappname = "dreamweaver"
+    </script> 
+<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+    <script src="http://use.edgefonts.net/the-girl-next-door:n4:default.js" type="text/javascript"></script>
+    <script src="http://use.edgefonts.net/schoolbell:n4:default.js" type="text/javascript"></script> 
+    <!-- <script src = "../Scripts/userNameResponsive.js" defer></script> 
+    <script src = "../Scripts/userGender.js" defer></script> 
+    <script src = "../Scripts/userFetchLuckyZodiac.js" defer></script> 
+    <script src = "../Scripts/userBirthdayZodiac.js" defer></script> -->
+    <script type="module">
+            // userphoto.js
+        //declearing html elements
+        const imgDiv = document.querySelector('.profile-pic-div');
+        const img = document.querySelector('#photo');
+        const imgFile = document.querySelector('#imgFile');
+        const uploadBtn = document.querySelector('#uploadBtn');
+        const imgReader = new FileReader(); //FileReader is a predefined function of JS
+        var userPicture = imgReader.result;
+        console.log(imgReader.result);
+        //if user hover on img div 
+        if (!userPicture){
+            console.log("no pfp yet!");
+
+            img.setAttribute('src', 'akari_xxl.png');
         }
 
-    </style>
-    <script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+        imgDiv.addEventListener('mouseenter', function(){
+            uploadBtn.style.display = "block";
+        });
+
+        //if we hover out from img div
+        
+        imgDiv.addEventListener('mouseleave', function(){
+            uploadBtn.style.display = "none";
+        });
+        
+        //lets work for image showing functionality when we choose an image to upload
+
+        //when we choose a foto to upload
+        imgFile.addEventListener('change', function(){
+            //this refers to imgFile
+            const choosedFile = this.files[0];
+            if (choosedFile) {
+                imgReader.addEventListener('load', function(){
+                    img.setAttribute('src', imgReader.result);
+                    console.log("pfp load!");
+                    userPicture = imgReader.result;
+                    console.log(userPicture);
+                });
+                imgReader.readAsDataURL(choosedFile);
+            }
+        });
+
+        const btnSubmit = document.getElementById('btnSubmit');
+        btnSubmit.addEventListener('click', updateUserInfo);
+        
+        // userInfoUpdate.js
+        function updateUserInfo() {
+            console.log("clicked submit");
+            const username = $('#username_inp').val()
+            const gender = $('#genderInp').val()
+            const birthday = $('#bdayInp').val()
+            
+            const data = {
+                username: username,
+                gender: gender,
+                birthday: birthday,
+                userPicture: userPicture
+            }
+            console.log(data);
+
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                url: '/user/updateInfo',
+                data: JSON.stringify(data),
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (data) {
+                    console.log((data))
+                }
+            })
+        }
+
+    // userBirthdayZodiac.js
+        // JavaScript Document
+        const userBdayInp = document.querySelector('#bdayInp');
+        const userZodiacDisp = document.querySelector('#zodiacDisp');
+        var userBdayStr = userBdayInp.value; // access bday by userBdayStr anywhere of script (defined after user changed it)
+        var userZodiacStr;
+        //console.log("js userBirthdayZodiac loaded");
+
+        var userLuckyZodiacJSON;
+
+        userBdayInp.addEventListener("change",
+            // userBdayListener:: event -> String						
+            event => {
+                // your additional handler here
+                console.log("birthday changed!");
+                let b = event.target.value;
+                userBdayStr = b;
+                userZodiacStr = dateStr_to_zodiac_sign(userBdayStr);
+                userZodiacDisp.innerHTML = userZodiacStr;
+
+                //		console.log("fetching luckyZodiac...");
+                //  not accurate as fetchLuckyZodiac is async;
+                fetchLuckyZodiac(userZodiacStr.toLowerCase()).then(userLuckyZodiacJSON => {
+                    console.log("got lucky zodiac!");
+                    console.log(userLuckyZodiacJSON);
+                    
+                    const luckyList = document.getElementById("luckyZodiac");
+                    luckyList.innerText = "";
+                    userLuckyZodiacJSON.newslist.forEach(({ type, content }) => {
+                    const luckyListItem = document.createElement("li");
+                    luckyListItem.innerText = `${type}: ${content}`;
+                    luckyList.appendChild(luckyListItem);
+                    
+                })
+            });
+        });
+
+
+        // str_to_ymdArr:: String -> [Number]
+        function str_to_ymdArr(sDate) {
+            let strArr = sDate.split("-");
+
+            let strArrTointArr = (strArr, toNum = s => parseInt(s)) => strArr.map(toNum);
+
+            return strArrTointArr(strArr);
+        }
+
+        // dateStr_to_zodiac_sign:: String -> [Number] -> String
+        function dateStr_to_zodiac_sign(dateStr) {
+            const ymdArr = str_to_ymdArr(dateStr);
+            const month = ymdArr[1];
+            const day = ymdArr[2];
+
+            //	alert(`d-t-zs called\n day = ${day}_${typeof day} and month = ${month}_${typeof month}\n you are ${zodiac_sign(day, month)}`); // making sure are numbers here;
+            return zodiac_sign(day, month);
+        }
+
+
+        // JavaScript program to display astrological sign
+        // or Zodiac sign for given date of birth
+
+        // Function to calculate sum
+        // digits of n
+        // zodiac_sign :: (int, int) -> String
+        function zodiac_sign(day, month) {
+            let astro_sign = "";
+
+            // checks month and date within the
+            // valid range of a specified zodiac
+            if (month == 12) {
+
+                if (day < 22)
+                    astro_sign = "Sagittarius";
+                else
+                    astro_sign = "Capricorn";
+            } else if (month == 1) {
+                if (day < 20)
+                    astro_sign = "Capricorn";
+                else
+                    astro_sign = "Aquarius";
+            } else if (month == 2) {
+                if (day < 19)
+                    astro_sign = "Aquarius";
+                else
+                    astro_sign = "Pisces";
+            } else if (month == 3) {
+                if (day < 21)
+                    astro_sign = "Pisces";
+                else
+                    astro_sign = "Aries";
+            } else if (month == 4) {
+                if (day < 20)
+                    astro_sign = "Aries";
+                else
+                    astro_sign = "Taurus";
+            } else if (month == 5) {
+                if (day < 21)
+                    astro_sign = "Taurus";
+                else
+                    astro_sign = "Gemini";
+            } else if (month == 6) {
+                if (day < 21)
+                    astro_sign = "Gemini";
+                else
+                    astro_sign = "Cancer";
+            } else if (month == 7) {
+                if (day < 23)
+                    astro_sign = "Cancer";
+                else
+                    astro_sign = "Leo";
+            } else if (month == 8) {
+                if (day < 23)
+                    astro_sign = "Leo";
+                else
+                    astro_sign = "Virgo";
+            } else if (month == 9) {
+                if (day < 23)
+                    astro_sign = "Virgo";
+                else
+                    astro_sign = "Libra";
+            } else if (month == 10) {
+                if (day < 23)
+                    astro_sign = "Libra";
+                else
+                    astro_sign = "Scorpio";
+            } else if (month == 11) {
+                if (day < 22)
+                    astro_sign = "Scorpio";
+                else
+                    astro_sign = "Sagittarius";
+            }
+
+            return astro_sign;
+        }
+
+
+    // userFetchLuckyZodiac.js
+        const zodiacApiHttpUrl =  "http://api.tianapi.com/star/index?key=6292c8dc89486f84e435358844b69a4e&astro=";
+        // fetchLuckyZodiac :: String -> JSON object
+        async function fetchLuckyZodiac(zodiac_str) {
+            console.log("fetching luckyZodiac....");
+            try {
+                const response = await fetch(zodiacApiHttpUrl + zodiac_str);
+                const body = await response.json();
+                console.log("received lucky data!");
+                return body;
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+    // userGender.js
+        const userGenderInp = document.querySelector('#genderInp');
+        var userGenderStr = userGenderInp.value;
+
+        userGenderInp.addEventListener("change",
+            //							   userGenderListener);
+            // userGenderListener:: event -> String
+            event => {
+                //	add your method here
+                let g = event.target.value;
+        //        console.log("userGender changed!");
+                console.log(g);
+                userGenderStr = g;
+                
+            })
+
+    // userNameResponsive.js
+        const usnmInp = document.querySelector('#username_inp');
+        const usnmDisplay = document.querySelector('#username_disp');
+        var	usernameStr = usnmInp.value;
+
+        usnmInp.addEventListener('input', function(e){
+            usernameStr = e.target.value;
+            if (usernameStr.length != 0){
+            usnmDisplay.innerText = "Welcome! " + usernameStr;
+            } else {usnmDisplay.innerHTML = "<br>";}
+        })
+
+    </script>
+    <!-- <script type="text/javascript" src="userScript.js" defer></script> -->
+
 </head>
 
 
@@ -200,18 +456,18 @@
                     margin-left: 250px;
                     border-width:1px"
                 >
-                    <tr><img src="../res/logo2x-clr.png" width="250" height="170" top="120" alt="logo"/>
+                    <tr><img src="logo.png" width="250" height="170" top="120" alt="logo"/>
                         <td valign="top"></td>
                     </tr>
                 </table>
             </div>
-            <div class="button">
+            <div class="navBtn", id="button0"> 
                 <br> <button onclick="foHome()">Home</button> <br>
             </div>
-            <div class="button1">
+            <div class"navBtn", id="button1"> 
                 <br> <button onclick="foUser()">User</button> <br>
             </div>
-            <div class="button2">
+            <div class"navBtn", id="button2"> 
                 <br> <button onclick="foLogin()">Search</button> <br>
             </div>
             <div class="page">
@@ -226,15 +482,16 @@
                     <table class="content" id="userInfoTable">
                         <tr>
                             <td>
-                                <div class="profile-pic-div"> <img src="../res/akari_xxl.png" id="photo">
-                                    <input type="file" id="file">
-                                    <label for="file" id="uploadBtn"> Choose Photo</label>
+                                <div class="profile-pic-div"> <img id="photo">
+                                    <input type="file" id="imgFile">
+                                    <label for="imgFile" id="uploadBtn"> Choose Photo</label>
                                 </div>
-                                <script src="../Scripts/photo.js"></script><br/><br/><br/><br/>
-                                <button id="btnSubmit" onclick="updateUserInfo()">Submit!</button>
+                                <!-- <script src="../Scripts/photo.js"></script> -->
+                                <br/><br/><br/><br/>
+                                <button id="btnSubmit">Submit!</button>
                             </td>
                             <td><table class="textSeg">
-                                <tbody class="textSeg">
+                                <tbody>
                                 <tr class = "infoRow">
                                     <th>Username</th>
                                     <td><form id="username_form">
@@ -252,12 +509,11 @@
                                     </td></tr>
                                 <tr class = "infoRow">
                                     <th>Birthday</th>
-                                    <td><input type="date" th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}" id="bdayInp" name="your-birthday" value = "1999-12-31" /></td>
+                                    <td><input type="date" th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}" id="bdayInp" name="your-birthday" /></td>
                                 </tr>
                                 <tr class = "infoRow">
                                     <th>Zodiac</th>
                                     <td id = "zodiacDisp">　</td>
-                                    <!--											<script src = "../Scripts/userBirthdayZodiac.js"></script>-->
                                 </tr>
                                 <tr class = "infoRow">
                                     <th>Email Address
@@ -269,12 +525,7 @@
                             </td>
                             <td>
                                 <li id = "luckyZodiac">
-                                    somezoadictext
                                 </li>
-                                <!--
-                                                                <script src = "../Scripts/userFetchLuckyZodiac.js" defer	></script>
-                                                                <script src = "../Scripts/userBirthdayZodiac.js" defer></script>
-                                -->
                             </td>
                         </tr>
                     </table>
@@ -283,200 +534,6 @@
         </div>
     </div>
 </div>
-<Script Language="JavaScript">
-    function updateUserInfo() {
-        var username = $('#username_inp').val()
-        var gender = $('#genderInp').val()
-        var birthday = $('#bdayInp').val()
-
-        var data = {
-            username: username,
-            gender: gender,
-            birthday: birthday
-        }
-
-        $.ajax({
-            type: 'post',
-            dataType: 'json',
-            contentType: 'application/json',
-            url: '/user/updateInfo',
-            data: JSON.stringify(data),
-            success: function (data) {
-                console.log(data)
-            },
-            error: function (data) {
-                console.log((data))
-            }
-        })
-    }
-
-    //gender.js
-    const userGenderInp = document.querySelector('#genderInp');
-    var userGenderStr = userGenderInp.value;
-
-    userGenderInp.addEventListener("change",
-
-        event => {
-            let g = event.target.value;
-            console.log(g);
-            userGenderStr = g;
-        })
-    //name.js
-    const usnmInp = document.querySelector('#username_inp');
-    const usnmDisplay = document.querySelector('#username_disp');
-    var	usernameStr = usnmInp.value;
-
-    usnmInp.addEventListener('input', function(e){
-        usernameStr = e.target.value;
-        if (usernameStr.length != 0){
-            usnmDisplay.innerText = "Welcome! " + usernameStr;
-        } else {usnmDisplay.innerHTML = "<br>";}
-    })
-    //email.js
-    console.log("userEmail.js loaded");
-    //photo.js
-    const imgDiv = document.querySelector('.profile-pic-div');
-    const img = document.querySelector('#photo');
-    const file = document.querySelector('#file');
-    const uploadBtn = document.querySelector('#uploadBtn');
-    imgDiv.addEventListener('mouseenter', function(){
-        uploadBtn.style.display = "block";
-    });
-    imgDiv.addEventListener('mouseleave', function(){
-        uploadBtn.style.display = "none";
-    });
-    file.addEventListener('change', function(){
-        //this refers to file
-        const choosedFile = this.files[0];
-        if (choosedFile) {
-            const reader = new FileReader(); //FileReader is a predefined function of JS
-            reader.addEventListener('load', function(){
-                img.setAttribute('src', reader.result);
-            });
-            reader.readAsDataURL(choosedFile);
-        }
-    });
-
-
-    // birthday
-    const userBdayInp = document.querySelector('#bdayInp');
-    const userZodiacDisp = document.querySelector('#zodiacDisp');
-    var userBdayStr = userBdayInp.value; // access bday by userBdayStr anywhere of script (defined after user changed it)
-    var userZodiacStr;
-    var userLuckyZodiacJSON;
-    userBdayInp.addEventListener("change",
-        event => {
-            console.log("birthday changed!");
-            let b = event.target.value;
-            userBdayStr = b;
-            userZodiacStr = dateStr_to_zodiac_sign(userBdayStr);
-            userZodiacDisp.innerHTML = userZodiacStr;
-            fetchLuckyZodiac(userZodiacStr.toLowerCase()).then(userLuckyZodiacJSON => {
-                console.log("got lucky zodiac!");
-                console.log(userLuckyZodiacJSON);
-                const luckyList = document.getElementById("luckyZodiac");
-                luckyList.innerText = "";
-                userLuckyZodiacJSON.newslist.forEach(({ type, content }) => {
-                    const luckyListItem = document.createElement("li");
-                    luckyListItem.innerText = `${type}: ${content}`;
-                    luckyList.appendChild(luckyListItem);
-
-                })
-            });
-        });
-
-    function str_to_ymdArr(sDate) {
-        let strArr = sDate.split("-");
-        let strArrTointArr = (strArr, toNum = s => parseInt(s)) => strArr.map(toNum);
-        return strArrTointArr(strArr);
-    }
-    function dateStr_to_zodiac_sign(dateStr) {
-        const ymdArr = str_to_ymdArr(dateStr);
-        const month = ymdArr[1];
-        const day = ymdArr[2];//	alert(`d-t-zs called\n day = ${day}_${typeof day} and month = ${month}_${typeof month}\n you are ${zodiac_sign(day, month)}`); // making sure are numbers here;
-        return zodiac_sign(day, month);
-    }
-
-    function zodiac_sign(day, month) {
-        let astro_sign = "";
-        if (month == 12) {
-            if (day < 22)
-                astro_sign = "Sagittarius";
-            else
-                astro_sign = "Capricorn";
-        } else if (month == 1) {
-            if (day < 20)
-                astro_sign = "Capricorn";
-            else
-                astro_sign = "Aquarius";
-        } else if (month == 2) {
-            if (day < 19)
-                astro_sign = "Aquarius";
-            else
-                astro_sign = "Pisces";
-        } else if (month == 3) {
-            if (day < 21)
-                astro_sign = "Pisces";
-            else
-                astro_sign = "Aries";
-        } else if (month == 4) {
-            if (day < 20)
-                astro_sign = "Aries";
-            else
-                astro_sign = "Taurus";
-        } else if (month == 5) {
-            if (day < 21)
-                astro_sign = "Taurus";
-            else
-                astro_sign = "Gemini";
-        } else if (month == 6) {
-            if (day < 21)
-                astro_sign = "Gemini";
-            else
-                astro_sign = "Cancer";
-        } else if (month == 7) {
-            if (day < 23)
-                astro_sign = "Cancer";
-            else
-                astro_sign = "Leo";
-        } else if (month == 8) {
-            if (day < 23)
-                astro_sign = "Leo";
-            else
-                astro_sign = "Virgo";
-        } else if (month == 9) {
-            if (day < 23)
-                astro_sign = "Virgo";
-            else
-                astro_sign = "Libra";
-        } else if (month == 10) {
-            if (day < 23)
-                astro_sign = "Libra";
-            else
-                astro_sign = "Scorpio";
-        } else if (month == 11) {
-            if (day < 22)
-                astro_sign = "Scorpio";
-            else
-                astro_sign = "Sagittarius";
-        }
-
-        return astro_sign;
-    }
-    //lucky.js
-    const zodiacApiHttpUrl =  "http://api.tianapi.com/star/index?key=6292c8dc89486f84e435358844b69a4e&astro=";
-    async function fetchLuckyZodiac(zodiac_str) {
-        console.log("fetching luckyZodiac....");
-        try {
-            const response = await fetch(zodiacApiHttpUrl + zodiac_str);
-            const body = await response.json();
-            console.log("received lucky data!");
-            return body;
-        } catch (err) {
-            console.error(err);
-        }
-    }
-</Script>
 
 </body>
 </html>
