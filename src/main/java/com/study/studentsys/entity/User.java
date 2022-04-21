@@ -12,18 +12,20 @@ public class User {
     private String gender; // 性别
     //    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday; // 生日
+    private String userPicture;
     private String confirmPassword;
     private String verificationCode;
     public User() {
     }
 
-    public User(String emailAddress, String username, String password, String confirmPassword,String gender, Date birthday) {
+    public User(String emailAddress, String username, String password, String confirmPassword,String gender, Date birthday, String userPicture) {
         this.emailAddress = emailAddress;
         this.username = username;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.gender = gender;
         this.birthday = birthday;
+        this.userPicture = userPicture;
         this.verificationCode = verificationCode;
     }
 
@@ -82,6 +84,13 @@ public class User {
         this.birthday = birthday;
     }
 
+    public void setUserPicture(String userPicture){
+        this.userPicture = userPicture;
+    }
+    public String getUserPicture(){
+        return userPicture;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -91,6 +100,7 @@ public class User {
                 ", gender='" + gender + '\'' +
                 ", birthday=" + birthday +
                 ", confirmPassword='" + confirmPassword + '\'' +
+                ", userPicture='"+userPicture + '\'' +
                 '}';
     }
 }
